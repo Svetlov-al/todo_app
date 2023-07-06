@@ -1,0 +1,5 @@
+Clean
+Learn python
+Drink some coffee
+Take some food
+Do something
