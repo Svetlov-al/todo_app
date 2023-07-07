@@ -1,7 +1,4 @@
 Clean
-Learn python
 Drink some coffee
 Take some food
-Do something
-drink some tea
-Go for a walk
+
