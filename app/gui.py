@@ -1,27 +1,44 @@
 import functions
 import PySimpleGUI as sg
 import time
+import os
+
+if not os.path.exists('files/todo.txt'):
+    with open('files/todo.txt', 'w') as file:
+        pass
 
 sg.theme('Black')
 clock = sg.Text('', key='clock')
 label = sg.Text("Write a to-do")
-input_box = sg.InputText(tooltip="Enter to-do", key='todo')
-add_button = sg.Button("Add")
+input_box = sg.InputText(tooltip="Enter to-do", key='todo', size=35)
+add_button = sg.Button(size=5,
+                       image_source='files/add.png',
+                       mouseover_colors='LightBlue2',
+                       tooltip='Add Todo', key='Add')
 list_box = sg.Listbox(values=functions.get_todos(), key='todos',
                       enable_events=True,
                       size=(35, 10))
 edit_button = sg.Button("Edit")
 
-complete_button = sg.Button("Complete")
+complete_button = sg.Button(size=5,
+                            image_source='files/complete.png',
+                            mouseover_colors='LightBlue2',
+                            key="Complete")
 
 exit_button = sg.Button('Exit')
 
+col_1 = sg.Column([[clock], [label], [input_box], [list_box], [exit_button]])
+col_2 = sg.Column([[add_button], [edit_button], [complete_button]])
+
+# window = sg.Window("StepByStep: Goal and Task Organizer",
+#                    layout=[[clock],
+#                            [label], [input_box, add_button],
+#                            [list_box, edit_button, complete_button],
+#                            [exit_button]],
+#                    font=("Helvetica", 20))
 
 window = sg.Window("StepByStep: Goal and Task Organizer",
-                   layout=[[clock],
-                           [label], [input_box, add_button],
-                           [list_box, edit_button, complete_button],
-                           [exit_button]],
+                   layout=[[col_1, col_2]],
                    font=("Helvetica", 20))
 
 while True:
